@@ -1,0 +1,6 @@
+package com.pet.petadoption.enumtype;
+
+public enum Role {
+    ADMIN,
+    CUSTOMER
+}

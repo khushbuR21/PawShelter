@@ -1,0 +1,13 @@
+@Service
+public class PetService {
+
+    private final PetRepository repo;
+
+    public PetService(PetRepository repo) {
+        this.repo = repo;
+    }
+
+    public Pet addPet(Pet pet) {
+        return repo.save(pet);
+    }
+}

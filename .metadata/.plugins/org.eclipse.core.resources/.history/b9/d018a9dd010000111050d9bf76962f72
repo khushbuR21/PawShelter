@@ -1,0 +1,22 @@
+@RestController
+@RequestMapping("/adoption")
+@CrossOrigin
+public class AdoptionController {
+
+    private final AdoptionService service;
+
+    public AdoptionController(AdoptionService service) {
+        this.service = service;
+    }
+
+    @PostMapping
+    public AdoptionRequest request(@RequestBody AdoptionRequestDTO dto) {
+        return service.requestAdoption(dto.getUserId(), dto.getPetId());
+    }
+
+    @PutMapping("/{id}/{status}")
+    public AdoptionRequest update(@PathVariable Long id,
+                                  @PathVariable String status) {
+        return service.updateStatus(id, status);
+    }
+}

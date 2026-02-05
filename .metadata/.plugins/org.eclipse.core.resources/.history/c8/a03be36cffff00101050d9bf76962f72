@@ -1,0 +1,5 @@
+package com.pet.petadoption.enumtype;
+
+public enum Gender {
+
+}

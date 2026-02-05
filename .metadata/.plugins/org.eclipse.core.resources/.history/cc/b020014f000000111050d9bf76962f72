@@ -1,0 +1,5 @@
+package com.pet.petadoption.repository;
+
+public interface PetRepository {
+
+}

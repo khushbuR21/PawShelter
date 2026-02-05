@@ -1,0 +1,5 @@
+package com.pet.petadoption.service;
+
+public class PetService {
+
+}

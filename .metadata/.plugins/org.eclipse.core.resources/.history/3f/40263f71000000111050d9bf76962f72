@@ -1,0 +1,9 @@
+package com.pet.petadoption.dto;
+
+import lombok.Data;
+
+@Data
+public class AdoptionRequestDTO {
+    private Long userId;
+    private Long petId;
+}

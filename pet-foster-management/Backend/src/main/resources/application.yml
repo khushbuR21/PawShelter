@@ -1,0 +1,30 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    # createDatabaseIfNotExist=true ensures MySQL creates the schema if it's missing
+    url: jdbc:mysql://localhost:3306/pet_foster_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    # The Dialect helps Hibernate generate the correct SQL syntax for MySQL 8
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate:
+        format_sql: true
+        # Alternative way to set dialect if database-platform doesn't work
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+jwt:
+  secret: petfoster_secret_key_123456789_petfoster_secret_key
+  expiration: 86400000

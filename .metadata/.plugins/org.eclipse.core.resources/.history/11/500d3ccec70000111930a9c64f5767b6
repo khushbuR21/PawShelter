@@ -1,0 +1,50 @@
+package com.petfoster.controller;
+
+import com.petfoster.dto.pet.*;
+import com.petfoster.service.PetService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/pets")
+public class PetController {
+
+    @Autowired
+    private PetService petService;
+
+    // ADMIN
+    /*@PostMapping
+    public ResponseEntity<PetResponseDTO> createPet(
+            @Valid @RequestBody PetCreateDTO dto,
+            Authentication authentication) {
+
+        return ResponseEntity.ok(
+                petService.createPet(dto, authentication.getName()));
+    }*/
+    
+    @PostMapping(value = "/pets/{petId}/images", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadPetImage(
+            @PathVariable Long petId,
+            @RequestParam("image") MultipartFile file
+    ) {
+        petService.uploadImage(petId, file);
+        return ResponseEntity.ok("Image uploaded");
+    }
+
+
+    // CUSTOMER + ADMIN
+    @GetMapping
+    public ResponseEntity<List<PetResponseDTO>> getAllPets() {
+        return ResponseEntity.ok(petService.getAllPets());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PetResponseDTO> getPet(@PathVariable Long id) {
+        return ResponseEntity.ok(petService.getPetById(id));
+    }
+}
